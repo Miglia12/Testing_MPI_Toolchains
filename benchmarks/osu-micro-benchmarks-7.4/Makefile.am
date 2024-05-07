@@ -1,3 +1,5 @@
-pyutildir = $(pkglibexecdir)/python/util
+SUBDIRS = 
 
-pyutil_SCRIPTS = options.py osu_util_mpi.py parser.py
+EXTRA_DIST = README CHANGES COPYRIGHT
+
+SUBDIRS += c
