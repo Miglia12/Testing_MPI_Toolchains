@@ -1,0 +1,44 @@
+# Ignore build directories
+/benchmarks/build_foss2020b/
+/benchmarks/build_foss2023a/
+
+# Ignore installation directories
+/src/osu_foss2020b/
+/src/osu_foss2023a/
+
+# Ignore common build artifacts
+*.o
+*.lo
+*.la
+*.so
+*.so.*
+*.a
+*.dylib
+
+# Ignore temporary files that might be created by editors or the OS
+*~
+*.swp
+.DS_Store
+
+# Ignore config.status and similar files
+config.status
+config.log
+makefile
+Makefile
+*.make
+*.bak
+
+# Ignore potential script generated temporary files
+*.tmp
+*.temp
+
+# Specific ignore for benchmark executables and data files, if needed
+/tests/
+/bin/
+/data/
+
+# Ignore metadata and environment setup files
+*.module
+
+# Ignore logs
+*.log
