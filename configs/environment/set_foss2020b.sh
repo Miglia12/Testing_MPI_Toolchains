@@ -12,7 +12,7 @@ SRC_DIR="$ROOT_REPO/src/"
 BUILD="$ROOT_REPO/src/builds/build_foss2020b"
 INSTALL="$ROOT_REPO/src/osu_foss2020b"
 
-if [[ ! -d "$EXTRACTED_TAR" ]]; then
+if [ ! -d "$EXTRACTED_TAR" ]; then
     printf "Directory '%s' does not exist. Extracting '%s'...\n" "$EXTRACTED_TAR" "$TAR_FILE"
     mkdir -p "$EXTRACTED_TAR" && tar -xzf "$TAR_FILE" -C "$SRC_DIR" || {
         printf "Failed to extract '%s'\n" "$TAR_FILE" >&2
@@ -55,13 +55,25 @@ fi
 mv "$INSTALL/libexec/osu-micro-benchmarks/mpi/"* "$INSTALL"
 rm -r "$INSTALL/libexec"
 
-# Save the paths for Reframe
+# startup tests
+INIT="$INSTALL/startup/osu_init"
+HELLO="$INSTALL/startup/osu_hello"
+
+# pt2pt tests
+LATENCY="$INSTALL/pt2pt/osu_latency"
+BW="$INSTALL/pt2pt/osu_bw"
+
+# one-sided tests
 PUT_LATENCY="$INSTALL/one-sided/osu_put_latency"
 GET_LATENCY="$INSTALL/one-sided/osu_get_latency"
 
 # Create a JSON configuration file
 cat <<EOF > $ROOT_REPO/tests/paths.json
 {
+    "init": "$INIT",
+    "hello": "$HELLO",
+    "latency": "$LATENCY",
+    "bw": "$BW",
     "put_latency": "$PUT_LATENCY",
     "get_latency": "$GET_LATENCY"
 }
