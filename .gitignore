@@ -1,0 +1,48 @@
+# Ignore temporary directories
+/benchmarks/build_foss2020b/
+/benchmarks/build_foss2023a/
+/src/osu_foss2020b/
+/src/osu_foss2023a/
+/benchmarks/osu-micro-benchmarks-7.4
+/src/osu-micro-benchmarks-7.4
+/src/builds
+
+# Ignore common build artifacts
+*.o
+*.lo
+*.la
+*.so
+*.so.*
+*.a
+*.dylib
+__pycache__
+
+# Ignore temporary files that might be created by editors or the OS
+*~
+*.swp
+.DS_Store
+
+# Ignore config.status and similar files
+config.status
+config.log
+makefile
+Makefile
+*.make
+*.bak
+
+# Ignore potential script generated temporary files
+*.tmp
+*.temp
+*.json
+
+# Specific ignore for benchmark executables and data files, if needed
+/bin/
+/data/
+/output/
+/stage/
+
+# Ignore metadata and environment setup files
+*.module
+
+# Ignore logs
+*.log
