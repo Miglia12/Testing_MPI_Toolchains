@@ -12,7 +12,7 @@ SRC_DIR="$ROOT_REPO/src/"
 BUILD="$ROOT_REPO/src/builds/build_foss2020b"
 INSTALL="$ROOT_REPO/src/osu_foss2020b"
 
-if [[ ! -d "$EXTRACTED_TAR" ]]; then
+if [ ! -d "$EXTRACTED_TAR" ]; then
     printf "Directory '%s' does not exist. Extracting '%s'...\n" "$EXTRACTED_TAR" "$TAR_FILE"
     mkdir -p "$EXTRACTED_TAR" && tar -xzf "$TAR_FILE" -C "$SRC_DIR" || {
         printf "Failed to extract '%s'\n" "$TAR_FILE" >&2

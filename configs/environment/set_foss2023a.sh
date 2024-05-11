@@ -1,18 +1,18 @@
 #!/bin/bash
 
 # Determine the root of the repo
-if ! root_repo=$(git rev-parse --show-toplevel); then
+if ! ROOT_REPO=$(git rev-parse --show-toplevel); then
     printf "Failed to find the git repository root.\n" >&2
     exit 1
 fi
 
 TAR_FILE="$ROOT_REPO/src/osu-micro-benchmarks-7.4.tar.gz"
 EXTRACTED_TAR="$ROOT_REPO/src/osu-micro-benchmarks-7.4"
-SRC_DIR="$ROOT_REPO/src"
-BUILD="$ROOT_REPO/src/builds/build_foss2020b"
-INSTALL="$ROOT_REPO/src/osu_foss2020b"
+SRC_DIR="$ROOT_REPO/src/"
+BUILD="$ROOT_REPO/src/builds/build_foss2023a"
+INSTALL="$ROOT_REPO/src/osu_foss2023a"
 
-if [[ ! -d "$EXTRACTED_TAR" ]]; then
+if [ ! -d "$EXTRACTED_TAR" ]; then
     printf "Directory '%s' does not exist. Extracting '%s'...\n" "$EXTRACTED_TAR" "$TAR_FILE"
     mkdir -p "$EXTRACTED_TAR" && tar -xzf "$TAR_FILE" -C "$SRC_DIR" || {
         printf "Failed to extract '%s'\n" "$TAR_FILE" >&2
@@ -35,7 +35,7 @@ mkdir -p "$INSTALL"
 cd "$BUILD" || { printf "Failed to change directory to %s\n" "$BUILD" >&2; exit 1; }
 
 # Configure the benchmarks
-if ! "$root_repo/src/osu-micro-benchmarks-7.4/configure" CC=mpicc CXX=mpicxx --prefix="$INSTALL"; then
+if ! "$ROOT_REPO/src/osu-micro-benchmarks-7.4/configure" CC=mpicc CXX=mpicxx --prefix="$INSTALL"; then
     printf "Configuration failed.\n" >&2
     exit 1
 fi
