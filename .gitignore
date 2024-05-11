@@ -33,9 +33,9 @@ Makefile
 # Ignore potential script generated temporary files
 *.tmp
 *.temp
+*.json
 
 # Specific ignore for benchmark executables and data files, if needed
-/tests/
 /bin/
 /data/
 /output/
