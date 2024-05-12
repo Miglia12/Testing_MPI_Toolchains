@@ -1,0 +1,3 @@
+[submodule "src/supermagic"]
+	path = src/supermagic
+	url = git@github.com:hpc/supermagic.git
