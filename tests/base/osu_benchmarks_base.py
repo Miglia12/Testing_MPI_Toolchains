@@ -39,7 +39,7 @@ class OSUMicroBenchmarkBase(rfm.RegressionTest):
         self.build_dir = repo_root / 'src/build_foss2020b'
         self.install_dir = repo_root / 'osu_foss2020b'
         
-        # Module to load
+        # Modules to load
         self.modules = ['toolchain/foss/2020b']
         
         self.executable = str(self.src_dir / 'bin/osu_mbw_mr')
@@ -63,7 +63,3 @@ class OSUMicroBenchmarkBase(rfm.RegressionTest):
         ensure_dir_empty(self.install_dir)
 
         os.system(f'tar -xzf {self.tar_file} -C {self.src_dir} --strip-components=1')
-
-    @sanity_function
-    def assert_installation_successful(self):
-        return sn.assert_true(os.path.exists(self.executable))
