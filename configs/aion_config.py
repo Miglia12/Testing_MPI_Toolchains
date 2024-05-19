@@ -20,10 +20,10 @@ site_configuration = {
     ],
     'environments': [
         {
-            'name': 'foss2020b',  
-            'cc': 'gcc',
-            'cxx': 'g++',
-            'ftn': 'gfortran',
+            'name': 'foss2020b',
+            'cc': 'mpicc',
+            'cxx': 'mpicxx',
+            'ftn': 'mpifort',
             'modules': ['toolchain/foss/2020b'],
             'target_systems': ['aion']
         },
