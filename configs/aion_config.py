@@ -13,26 +13,25 @@ site_configuration = {
                     'launcher': 'srun',
                     'access': ['--partition=batch', '--qos=normal'],
                     'max_jobs':  8,
-                    'environs': ['gnu', 'builtin'],
+                    'environs': ['foss2020b', 'foss2023a'],
                 }
             ]
         }
     ],
     'environments': [
         {
-            'name': 'gnu',
-            'modules': ['toolchain/foss/2020b'],
-            'cc': 'gcc',
-            'cxx': 'g++',
-            'ftn': 'gfortran',
+            'name': 'foss2023a',
+            'cc': 'mpicc',
+            'cxx': 'mpicxx',
+            'modules': ['toolchain/foss/2023a'],
             'target_systems': ['aion']
         },
         {
-            'name': 'builtin',
-            'cc': 'gcc',
-            'cxx': 'g++',
-            'ftn': 'gfortran',
+            'name': 'foss2020b',
+            'cc': 'mpicc',
+            'cxx': 'mpicxx',
+            'modules': ['toolchain/foss/2020b'],
             'target_systems': ['aion']
-        },
+        }
     ]
 }
