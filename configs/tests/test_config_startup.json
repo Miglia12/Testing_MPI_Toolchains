@@ -1,0 +1,12 @@
+{
+    "osu_init": {
+        "path_elements": ["osu-micro-benchmarks-7.4", "c", "mpi", "startup", "osu_init"],
+        "exe_options": "",
+        "time": "10m"
+    },
+    "osu_hello": {
+        "path_elements": ["osu-micro-benchmarks-7.4", "c", "mpi", "startup", "osu_hello"],
+        "exe_options": "",
+        "time": "10m"
+    }
+}
