@@ -1,6 +1,7 @@
 import reframe as rfm
 import reframe.utility.sanity as sn
 import os
+import json
 
 
 class fetch_osu_benchmarks(rfm.RunOnlyRegressionTest):
@@ -27,6 +28,7 @@ class build_osu_benchmarks(rfm.CompileOnlyRegressionTest):
     build_prefix = variable(str)
     osu_benchmarks = fixture(fetch_osu_benchmarks, scope='session')
 
+
     @run_before('compile')
     def prepare_build(self):
         tarball = f'osu-micro-benchmarks-{self.osu_benchmarks.version}.tar.gz'
@@ -43,19 +45,51 @@ class build_osu_benchmarks(rfm.CompileOnlyRegressionTest):
     def validate_build(self):
         return True
 
-    
+
 class OSUBenchmarkBase(rfm.RunOnlyRegressionTest):
     valid_systems = ['aion:batch']
     valid_prog_environs = ['*']
     descr = 'Run OSU benchmarks'
     osu_benchmarks = fixture(build_osu_benchmarks, scope='environment')
+    
+    # Define the path to get the specific test config file
+    config_path = 'configs/tests/'
+    test_type = ''
+    test_name = ''
+    
+    # By default performs a test with one node and a test with two nodes
+    number_of_nodes_to_test = parameter([1, 2])
+    number_of_tasks_per_node = parameter([2, 4])
+
+    @run_after('setup')
+    def load_test_config(self):
+        config_test_path = os.path.join(self.config_path, f'test_config_{self.test_type}.json')
+
+        if not os.path.exists(config_test_path):
+            self.logger.info(f'Current directory: {os.getcwd()}')
+            raise FileNotFoundError(f"Configuration file for {self.test_type} not found at {config_test_path}")
+    
+        with open(config_test_path, 'r') as configs:
+            all_configs = json.load(configs)
+        
+        if self.test_name not in all_configs:
+            self.logger.info(f'Current directory: {os.getcwd()}')
+            raise ValueError(f"Test name '{self.test_name}' not found in configuration file {config_test_path}")
+        
+        self.test_config = all_configs[self.test_name]
 
     @run_before('run')
     def set_computational_resources(self):
-        self.job.options = [
-            '--time=00:05:00',
-            '--nodes=1',
-            '--ntasks=2',  
-            '--ntasks-per-node=2',  
-            '--cpus-per-task=1'
-        ]
+        self.num_nodes = self.number_of_nodes_to_test
+        self.num_tasks_per_node = self.number_of_tasks_per_node
+        self.num_tasks = self.number_of_tasks_per_node * self.number_of_nodes_to_test
+        # self.logger.info(f'Resources: {self.num_nodes} nodes with {self.num_tasks_per_node} tasks each')
+
+    @run_before('run')
+    def set_test_config(self):
+        self.executable = os.path.join(
+            self.osu_benchmarks.stagedir,
+            *self.test_config['path_elements']
+        )
+        self.executable_opts = self.test_config['exe_options'].split()
+        self.time_limit = self.test_config['time']

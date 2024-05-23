@@ -6,17 +6,10 @@ import reframe.utility.sanity as sn
 
 
 @rfm.simple_test
-class test_init(OSUBenchmarkBase):
-    @run_before('run')
-    def set_executable(self):
-        self.executable = path.join(
-            self.osu_benchmarks.stagedir,
-            'osu-micro-benchmarks-7.4',
-            'c',
-            'mpi',
-            'startup',
-            'osu_init'
-        )
+class TestInit(OSUBenchmarkBase):
+    
+    test_type = 'startup'
+    test_name = 'osu_init'
 
     @sanity_function
     def validate_run(self):
@@ -24,17 +17,10 @@ class test_init(OSUBenchmarkBase):
     
 
 @rfm.simple_test
-class test_hello(OSUBenchmarkBase):
-    @run_before('run')
-    def set_executable(self):
-        self.executable = path.join(
-            self.osu_benchmarks.stagedir,
-            'osu-micro-benchmarks-7.4',
-            'c',
-            'mpi',
-            'startup',
-            'osu_hello'
-        )
+class TestHello(OSUBenchmarkBase):
+
+    test_type = 'startup'
+    test_name = 'osu_hello'
 
     @sanity_function
     def validate_run(self):
