@@ -13,7 +13,7 @@ class TestPutLatency(OSUBenchmarkBase):
 
     @run_after('init')
     def skip_invalid(self):
-        self.skip_if(self.number_of_nodes_to_test * self.number_of_tasks_per_node != 2, 'Invalid parameter combination - Put latency requires exaclty two processes')
+        self.skip_if(self.number_of_nodes_to_test * self.number_of_tasks_per_node != 2, 'Invalid parameter combination - requires exaclty two processes')
 
     @sanity_function
     def validate_run(self):
@@ -27,7 +27,7 @@ class TestGetLatency(OSUBenchmarkBase):
 
     @run_after('init')
     def skip_invalid(self):
-        self.skip_if(self.number_of_nodes_to_test * self.number_of_tasks_per_node != 2, 'Invalid parameter combination - Put latency requires exaclty two processes')
+        self.skip_if(self.number_of_nodes_to_test * self.number_of_tasks_per_node != 2, 'Invalid parameter combination - requires exaclty two processes')
 
     @sanity_function
     def validate_run(self):
@@ -41,7 +41,7 @@ class TestPutBW(OSUBenchmarkBase):
 
     @run_after('init')
     def skip_invalid(self):
-        self.skip_if(self.number_of_nodes_to_test * self.number_of_tasks_per_node != 2, 'Invalid parameter combination - Put latency requires exaclty two processes')
+        self.skip_if(self.number_of_nodes_to_test * self.number_of_tasks_per_node != 2, 'Invalid parameter combination - requires exaclty two processes')
 
     @sanity_function
     def validate_run(self):
@@ -55,7 +55,7 @@ class TestGetBW(OSUBenchmarkBase):
 
     @run_after('init')
     def skip_invalid(self):
-        self.skip_if(self.number_of_nodes_to_test * self.number_of_tasks_per_node != 2, 'Invalid parameter combination - Put latency requires exaclty two processes')
+        self.skip_if(self.number_of_nodes_to_test * self.number_of_tasks_per_node != 2, 'Invalid parameter combination - requires exaclty two processes')
 
     @sanity_function
     def validate_run(self):
