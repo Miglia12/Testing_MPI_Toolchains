@@ -6,6 +6,7 @@
 /benchmarks/osu-micro-benchmarks-7.4
 /src/osu-micro-benchmarks-7.4
 /src/builds
+perflogs/
 
 # Ignore common build artifacts
 *.o

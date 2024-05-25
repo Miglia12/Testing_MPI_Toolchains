@@ -46,6 +46,7 @@ class build_osu_benchmarks(rfm.CompileOnlyRegressionTest):
         return True
 
 
+
 class OSUBenchmarkBase(rfm.RunOnlyRegressionTest):
     valid_systems = ['aion:batch']
     valid_prog_environs = ['*']
@@ -56,10 +57,6 @@ class OSUBenchmarkBase(rfm.RunOnlyRegressionTest):
     config_path = 'configs/tests/'
     test_type = ''
     test_name = ''
-    
-    # By default performs a test with one node and a test with two nodes
-    number_of_nodes_to_test = parameter([1, 2])
-    number_of_tasks_per_node = parameter([2, 4])
 
     @run_after('setup')
     def load_test_config(self):
@@ -78,12 +75,14 @@ class OSUBenchmarkBase(rfm.RunOnlyRegressionTest):
         
         self.test_config = all_configs[self.test_name]
 
+    number_of_nodes_to_test = parameter([1, 2])
+    
     @run_before('run')
     def set_computational_resources(self):
         self.num_nodes = self.number_of_nodes_to_test
-        self.num_tasks_per_node = self.number_of_tasks_per_node
-        self.num_tasks = self.number_of_tasks_per_node * self.number_of_nodes_to_test
-        # self.logger.info(f'Resources: {self.num_nodes} nodes with {self.num_tasks_per_node} tasks each')
+        self.num_tasks = 2
+        self.number_of_tasks_per_node = self.num_tasks / self.num_nodes
+        self.logger.info(f'Resources: {self.num_nodes} nodes with {self.num_tasks_per_node} tasks each')
 
     @run_before('run')
     def set_test_config(self):
@@ -93,3 +92,11 @@ class OSUBenchmarkBase(rfm.RunOnlyRegressionTest):
         )
         self.executable_opts = self.test_config['exe_options'].split()
         self.time_limit = self.test_config['time']
+        
+    @run_before('performance')
+    def set_performance_reference(self):
+        self.reference = {
+            'aion': {
+                'last': tuple(self.test_config['reference'][str(self.num_nodes)]) # set the reference value according to the number of nodes
+            }
+        }

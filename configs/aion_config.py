@@ -13,7 +13,7 @@ site_configuration = {
                     'launcher': 'srun',
                     'access': ['--partition=batch', '--qos=normal'],
                     'max_jobs':  8,
-                    'environs': ['foss2020b', 'foss2023a'],
+                    'environs': ['foss2020b'],
                 }
             ]
         }
