@@ -13,7 +13,7 @@ site_configuration = {
                     'launcher': 'srun',
                     'access': ['--partition=batch', '--qos=normal'],
                     'max_jobs':  8,
-                    'environs': ['foss2020b'],
+                    'environs': ['foss2020b', 'foss2023a'],
                 }
             ]
         }
@@ -23,14 +23,14 @@ site_configuration = {
             'name': 'foss2023a',
             'cc': 'mpicc',
             'cxx': 'mpicxx',
-            'modules': ['toolchain/foss/2023a'],
+            'modules': ['toolchain/foss/2023a', 'lib/libtool'],
             'target_systems': ['aion']
         },
         {
             'name': 'foss2020b',
             'cc': 'mpicc',
             'cxx': 'mpicxx',
-            'modules': ['toolchain/foss/2020b'],
+            'modules': ['toolchain/foss/2020b', 'lib/libtool'],
             'target_systems': ['aion']
         }
     ]
