@@ -12,8 +12,14 @@ class TestInit(OSUBenchmarkBase):
 
     @sanity_function
     def validate_run(self):
-        return sn.assert_found('OSU MPI Init Test', self.stdout)
-
+        # Check for the presence of the 'OSU MPI Init Test' string
+        osu_test_found = sn.assert_found('OSU MPI Init Test', self.stdout)
+        
+        # Check for the number of tasks
+        ntasks_found = sn.assert_found(f'nprocs: {self.num_tasks}', self.stdout)
+        
+        return osu_test_found & ntasks_found
+    
 
 @rfm.simple_test
 class TestHello(OSUBenchmarkBase):
@@ -22,4 +28,8 @@ class TestHello(OSUBenchmarkBase):
 
     @sanity_function
     def validate_run(self):
-        return sn.assert_found('OSU MPI Hello World Test', self.stdout)
+        osu_test_found = sn.assert_found('OSU MPI Hello World Test', self.stdout)
+
+        ntasks_found = sn.assert_found(f'{self.num_tasks}', self.stdout)
+
+        return osu_test_found & ntasks_found

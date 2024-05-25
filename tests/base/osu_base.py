@@ -44,7 +44,17 @@ class build_osu_benchmarks(rfm.CompileOnlyRegressionTest):
     @sanity_function
     def validate_build(self):
         return True
-
+    
+def find_repo_root():
+    markers = ['.git', 'README.md']
+    current_dir = os.getcwd()
+    
+    while current_dir != os.path.dirname(current_dir):
+        if any(os.path.exists(os.path.join(current_dir, marker)) for marker in markers):
+            return os.path.abspath(current_dir)
+        current_dir = os.path.dirname(current_dir)
+    
+    return None
 
 
 class OSUBenchmarkBase(rfm.RunOnlyRegressionTest):
@@ -54,11 +64,16 @@ class OSUBenchmarkBase(rfm.RunOnlyRegressionTest):
     osu_benchmarks = fixture(build_osu_benchmarks, scope='environment')
     
     # Define the path to get the specific test config file
-    config_path = 'configs/tests/'
+    repo_root = find_repo_root()
+    config_path = os.path.join(repo_root, 'configs', 'tests')
     test_type = ''
     test_name = ''
+    
+    # By default performs a test with one node and a test with two nodes
+    number_of_nodes_to_test = parameter([1, 2])
+    number_of_tasks_per_node = parameter([1, 2])
 
-    @run_after('setup')
+    @run_after('init')
     def load_test_config(self):
         config_test_path = os.path.join(self.config_path, f'test_config_{self.test_type}.json')
 

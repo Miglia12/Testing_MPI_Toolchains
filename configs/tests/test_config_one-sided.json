@@ -1,0 +1,22 @@
+{
+    "osu_put_latency": {
+        "path_elements": ["osu-micro-benchmarks-7.4", "c", "mpi", "one-sided", "osu_put_latency"],
+        "exe_options": "",
+        "time": "10m"
+    },
+    "osu_get_latency": {
+        "path_elements": ["osu-micro-benchmarks-7.4", "c", "mpi", "one-sided", "osu_get_latency"],
+        "exe_options": "",
+        "time": "10m"
+    },
+    "osu_put_bw": {
+        "path_elements": ["osu-micro-benchmarks-7.4", "c", "mpi", "one-sided", "osu_put_bw"],
+        "exe_options": "",
+        "time": "10m"
+    },
+    "osu_get_bw": {
+        "path_elements": ["osu-micro-benchmarks-7.4", "c", "mpi", "one-sided", "osu_get_bw"],
+        "exe_options": "",
+        "time": "10m"
+    }
+}
