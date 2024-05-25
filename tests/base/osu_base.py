@@ -68,10 +68,6 @@ class OSUBenchmarkBase(rfm.RunOnlyRegressionTest):
     config_path = os.path.join(repo_root, 'configs', 'tests')
     test_type = ''
     test_name = ''
-    
-    # By default performs a test with one node and a test with two nodes
-    number_of_nodes_to_test = parameter([1, 2])
-    number_of_tasks_per_node = parameter([1, 2])
 
     @run_after('init')
     def load_test_config(self):
