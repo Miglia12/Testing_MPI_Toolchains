@@ -7,6 +7,7 @@ benchmarking suite [[link]](http://mvapich.cse.ohio-state.edu/benchmarks/), and
 Supermagic [[link]](https://github.com/hpc/supermagic).
 
 ## Folder structure
+```
 Testing_MPI_Toolchains/
 ├── configs/                    
 │   ├── aion_config.py      # ReFrame configuration file
@@ -21,6 +22,7 @@ Testing_MPI_Toolchains/
 │   └── supermagic/         # Supermagic tests
 │       └── supermagic.py
 └── README.md
+```
 
 
 ## Running instructions
