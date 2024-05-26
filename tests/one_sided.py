@@ -13,12 +13,18 @@ class TestPutLatency(OSUBenchmarkBase):
 
     @run_after('init')
     def skip_invalid(self):
-        self.skip_if(self.number_of_nodes_to_test * self.number_of_tasks_per_node != 2, 'Invalid parameter combination - requires exaclty two processes')
+        self.skip_if(self.num_tasks != 2,
+                     'Invalid parameter combination - requires exaclty two processes')
 
     @sanity_function
     def validate_run(self):
         return sn.assert_found('OSU MPI_Put Latency Test', self.stdout)
-    
+
+    @performance_function('us', perf_key='last')
+    def extract_performance(self):
+        return sn.extractsingle(r'^8\s+(\S+)', self.stdout, 1, float)
+
+
 @rfm.simple_test
 class TestGetLatency(OSUBenchmarkBase):
 
@@ -27,12 +33,18 @@ class TestGetLatency(OSUBenchmarkBase):
 
     @run_after('init')
     def skip_invalid(self):
-        self.skip_if(self.number_of_nodes_to_test * self.number_of_tasks_per_node != 2, 'Invalid parameter combination - requires exaclty two processes')
+        self.skip_if(self.num_tasks != 2,
+                     'Invalid parameter combination - requires exaclty two processes')
 
     @sanity_function
     def validate_run(self):
         return sn.assert_found('OSU MPI_Get latency Test', self.stdout)
-    
+
+    @performance_function('us', perf_key='last')
+    def extract_performance(self):
+        return sn.extractsingle(r'^8\s+(\S+)', self.stdout, 1, float)
+
+
 @rfm.simple_test
 class TestPutBW(OSUBenchmarkBase):
 
@@ -41,12 +53,18 @@ class TestPutBW(OSUBenchmarkBase):
 
     @run_after('init')
     def skip_invalid(self):
-        self.skip_if(self.number_of_nodes_to_test * self.number_of_tasks_per_node != 2, 'Invalid parameter combination - requires exaclty two processes')
+        self.skip_if(self.num_tasks != 2,
+                     'Invalid parameter combination - requires exactly two processes')
 
     @sanity_function
     def validate_run(self):
         return sn.assert_found('OSU MPI_Put Bandwidth Test', self.stdout)
-    
+
+    @performance_function('MB/s', perf_key='last')
+    def extract_performance(self):
+        return sn.extractsingle(r'^8\s+(\S+)', self.stdout, 1, float)
+
+
 @rfm.simple_test
 class TestGetBW(OSUBenchmarkBase):
 
@@ -55,9 +73,13 @@ class TestGetBW(OSUBenchmarkBase):
 
     @run_after('init')
     def skip_invalid(self):
-        self.skip_if(self.number_of_nodes_to_test * self.number_of_tasks_per_node != 2, 'Invalid parameter combination - requires exaclty two processes')
+        self.skip_if(self.num_tasks != 2,
+                     'Invalid parameter combination - requires exactly two processes')
 
     @sanity_function
     def validate_run(self):
         return sn.assert_found('OSU MPI_Get Bandwidth Test', self.stdout)
 
+    @performance_function('MB/s', perf_key='last')
+    def extract_performance(self):
+        return sn.extractsingle(r'^8\s+(\S+)', self.stdout, 1, float)
