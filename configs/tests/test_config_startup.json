@@ -1,10 +1,12 @@
 {
     "osu_init": {
         "path_elements": ["osu-micro-benchmarks-7.4", "c", "mpi", "startup", "osu_init"],
-        "time": "10m"
+        "time": "10m",
+        "num_tasks": 2
     },
     "osu_hello": {
         "path_elements": ["osu-micro-benchmarks-7.4", "c", "mpi", "startup", "osu_hello"],
-        "time": "10m"
+        "time": "10m",
+        "num_tasks": 2
     }
 }
