@@ -27,9 +27,9 @@ These tests have been tailored for UniLu's Aion cluster. All necessary
 configuration has already been specified in the repository files. 
 To run the tests, execute the following commands from the repository's root directory:
 
-1. Login to Aion and request access to an interactive node:
+1. Login to Aion and request access to an interactive node for one hour:
    ```bash
-   si -N 2
+   si -t 01:00:00
    ```
 
 2. Set up the environment:
@@ -58,3 +58,17 @@ reframe -C configs/aion_config.py -c tests/supermagic --run
 
 ## Configuring tests
 
+By default, the OSU tests run with both an intra-node and inter-node configuration. However, the number of tasks can be configured from the configuration files under `configs/tests`. If you change the number of tasks, you should also add a corresponding performance reference value with the format `{i}_tasks`.
+
+For example:
+```
+{
+   ...
+   "num_tasks": 6,
+   "reference": {
+      ...
+      "3_tasks": [23000, -0.05, None, 'MB/s'],
+      "6_tasks": [<ref_val>, <lower threshold>, <upper threshold>, <unit>]
+   }
+}
+```
