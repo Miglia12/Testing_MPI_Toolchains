@@ -1,0 +1,18 @@
+{
+    "osu_latency": {
+        "path_elements": ["osu-micro-benchmarks-7.4", "c", "mpi", "pt2pt", "standard", "osu_latency"],
+        "time": "10m",
+        "num_tasks": 2,
+        "reference": {
+            "2_tasks": [0.14, -0.1, 0.1, "us"]
+        }
+    },
+    "osu_bw": {
+        "path_elements": ["osu-micro-benchmarks-7.4", "c", "mpi", "pt2pt", "standard", "osu_bw"],
+        "time": "10m",
+        "num_tasks": 2,
+        "reference": {
+            "2_tasks": [135, -0.1, 0.1, "MB/s"]
+        }
+    }
+}

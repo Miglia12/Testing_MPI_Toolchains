@@ -1,0 +1,50 @@
+{
+    "osu_alltoall": {
+        "path_elements": ["osu-micro-benchmarks-7.4", "c", "mpi", "collective", "blocking", "osu_alltoall"],
+        "time": "10m",
+        "reference": {
+            "4_tasks": [0.57, -0.1, 0.1, "us"]
+        },
+        "num_tasks": 4
+    },
+    "osu_bcast": {
+        "path_elements": ["osu-micro-benchmarks-7.4", "c", "mpi", "collective", "blocking", "osu_bcast"],
+        "time": "10m",
+        "reference": {
+            "4_tasks": [0.28, -0.1, 0.1, "us"]
+        },
+        "num_tasks": 4
+    },
+    "osu_reduce": {
+        "path_elements": ["osu-micro-benchmarks-7.4", "c", "mpi", "collective", "blocking", "osu_reduce"],
+        "time": "10m",
+        "reference": {
+            "4_tasks": [0.17, -0.1, 0.1, "us"]
+        },
+        "num_tasks": 4
+    },
+    "osu_ialltoall": {
+        "path_elements": ["osu-micro-benchmarks-7.4", "c", "mpi", "collective", "non_blocking", "osu_ialltoall"],
+        "time": "10m",
+        "reference": {
+            "4_tasks": [3.48, -0.15, 0.15, "us"]
+        },
+        "num_tasks": 4
+    },
+    "osu_ibcast": {
+        "path_elements": ["osu-micro-benchmarks-7.4", "c", "mpi", "collective", "non_blocking", "osu_ibcast"],
+        "time": "10m",
+        "reference": {
+            "4_tasks": [1.5, -0.15, 0.15, "us"]
+        },
+        "num_tasks": 4
+    },
+    "osu_ireduce": {
+        "path_elements": ["osu-micro-benchmarks-7.4", "c", "mpi", "collective", "non_blocking", "osu_ireduce"],
+        "time": "10m",
+        "reference": {
+            "4_tasks": [1.74, -0.1, 0.1, "us"]
+        },
+        "num_tasks": 4
+    }
+}
