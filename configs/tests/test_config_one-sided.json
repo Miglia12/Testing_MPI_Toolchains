@@ -4,7 +4,8 @@
         "time": "10m",
         "num_tasks": 2,
         "reference": {
-            "2_tasks": [0.17, -0.1, 0.1, "us"]
+            "foss2020b": [0.17, -0.9, 0.9, "us"],
+            "foss2023a": [0.17, -0.9, 0.9, "us"]
         }
     },
     "osu_get_latency": {
@@ -12,7 +13,8 @@
         "time": "10m",
         "num_tasks": 2,
         "reference": {
-            "2_tasks": [0.16, -0.1, 0.1, "us"]
+            "foss2020b": [0.17, -0.9, 0.9, "us"],
+            "foss2023a": [0.1, -0.9, 0.9, "us"]
         }
     },
     "osu_put_bw": {
@@ -20,7 +22,8 @@
         "time": "10m",
         "num_tasks": 2,
         "reference": {
-            "2_tasks": [127, -0.1, 0.1, "MB/s"]
+            "foss2020b": [127, -0.9, 0.9, "MB/s"],
+            "foss2023a": [259, -0.9, 0.9, "MB/s"]
         }
     },
     "osu_get_bw": {
@@ -28,7 +31,8 @@
         "time": "10m",
         "num_tasks": 2,
         "reference": {
-            "2_tasks": [131, -0.1, 0.1, "MB/s"]
+            "foss2020b": [131, -0.9, 0.9, "MB/s"],
+            "foss2023a": [261, -0.9, 0.9, "MB/s"]
         }
     }
 }

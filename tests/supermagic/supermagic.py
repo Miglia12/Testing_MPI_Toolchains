@@ -9,7 +9,11 @@ NUM_TASKS_PER_NODE = 1
 TIME_LIMIT         = 5
 
 
-class FetchStep(rfm.RunOnlyRegressionTest):
+class fetch_supermagic(rfm.RunOnlyRegressionTest):
+    """
+        Defines a test to fetch the Supermagic Test Suite
+        This will not be executed as a stand-alone test, but as a dependency
+    """
     valid_systems       = ['aion:batch']
     valid_prog_environs = [         '*']
     descr               = 'Fetch SuperMagic benchmarks'
@@ -24,13 +28,17 @@ class FetchStep(rfm.RunOnlyRegressionTest):
         return sn.assert_eq(self.job.exitcode, 0)
 
 
-class BuildStep(rfm.CompileOnlyRegressionTest):
+class build_supermagic(rfm.CompileOnlyRegressionTest):
+    """
+        Defines a test to build the Supermagic Test Suite
+        This will not be executed as a stand-alone test, but as a dependency
+    """
     valid_systems       = ['aion:batch']
     valid_prog_environs = [         '*']
     descr               = 'Build SuperMagic benchmarks'
     build_system        = 'Autotools'
     build_dirname       = variable(str)
-    fetch_step          = fixture(FetchStep, scope='session')
+    fetch_step          = fixture(fetch_supermagic, scope='session')
 
 
     @run_before('compile')
@@ -57,16 +65,22 @@ class SuperMagicTestSuite(rfm.RunOnlyRegressionTest):
     valid_systems       = ['aion:batch']
     valid_prog_environs = [         '*']
     descr               = 'Run SuperMagic benchmarks'
-    build_step          = fixture(BuildStep, scope='environment')
+    build_step          = fixture(build_supermagic, scope='environment')
 
     @run_before('run')
     def set_computational_resources(self):
+        """
+            Set the computational resources (number of nodes and tasks) for the test.
+        """
         self.num_nodes          = NUM_NODES
         self.num_tasks_per_node = NUM_TASKS_PER_NODE
         self.num_tasks          = NUM_NODES * NUM_TASKS_PER_NODE
 
     @run_before('run')
     def set_test_config(self):
+        """
+            Set the test configuration before running the benchmark.
+        """
         opt_num_nodes = '-np %d' % NUM_NODES
         opt_execpath  = self.build_step.execpath
 

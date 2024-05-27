@@ -5,6 +5,10 @@ import json
 
 
 class fetch_osu_benchmarks(rfm.RunOnlyRegressionTest):
+    """
+        Defines a test to fetch OSU benchmarks
+        This will not be executed as a stand-alone test, but as a dependency
+    """
     valid_systems = ['aion:batch']
     valid_prog_environs = ['*']
     descr = 'Fetch OSU benchmarks'
@@ -21,6 +25,10 @@ class fetch_osu_benchmarks(rfm.RunOnlyRegressionTest):
 
 
 class build_osu_benchmarks(rfm.CompileOnlyRegressionTest):
+    """
+        Defines a test to build OSU benchmarks
+        This will not be executed as a stand-alone test, but as a dependency
+    """
     valid_systems = ['aion:batch']
     valid_prog_environs = ['*']
     descr = 'Build OSU benchmarks'
@@ -58,6 +66,10 @@ def find_repo_root():
 
 
 class OSUBenchmarkBase(rfm.RunOnlyRegressionTest):
+    """
+        Parent class of the actual benchmark tests
+        Contains common configurations for all tests
+    """
     valid_systems = ['aion:batch']
     valid_prog_environs = ['*']
     descr = 'Run OSU benchmarks'
@@ -71,13 +83,16 @@ class OSUBenchmarkBase(rfm.RunOnlyRegressionTest):
 
     @run_after('init')
     def load_test_config(self):
+        """
+            Loads the test configuration from the configs/tests JSON file based on the test type and name.
+        """
         config_test_path = os.path.join(
-            self.config_path, f'test_config_{self.test_type}.json')
+           self.config_path, f'test_config_{self.test_type}.json')
 
         if not os.path.exists(config_test_path):
-            self.logger.info(f'Current directory: {os.getcwd()}')
-            raise FileNotFoundError(
-                f"Configuration file for {self.test_type} not found at {config_test_path}")
+                self.logger.info(f'Current directory: {os.getcwd()}')
+                raise FileNotFoundError(
+                    f"Configuration file for {self.test_type} not found at {config_test_path}")
 
         with open(config_test_path, 'r') as configs:
             all_configs = json.load(configs)
@@ -94,12 +109,18 @@ class OSUBenchmarkBase(rfm.RunOnlyRegressionTest):
 
     @run_after('init')
     def set_computational_resources(self):
+        """
+            Set the computational resources (number of nodes and tasks) for the test.
+        """
         self.num_nodes = self.number_of_nodes_to_test
         self.num_tasks = self.test_config['num_tasks']
         self.number_of_tasks_per_node = self.num_tasks / self.num_nodes
 
     @run_before('run')
     def set_test_config(self):
+        """
+            Set the test configuration before running the benchmark.
+        """
         self.executable = os.path.join(
             self.osu_benchmarks.stagedir,
             *self.test_config['path_elements']
@@ -108,9 +129,15 @@ class OSUBenchmarkBase(rfm.RunOnlyRegressionTest):
 
     @run_before('performance')
     def set_performance_reference(self):
+        """
+            Set the performance reference values based on the configuration.
+        """
+        if 'reference' not in self.test_config:
+            self.reference = {}
+            return
         self.reference = {
             'aion': {
                 # set the reference value according to the number of tasks
-                'last': tuple(self.test_config['reference'][str(self.num_tasks) + "_tasks"])
+                'last': tuple(self.test_config['reference'][str(self.current_environ)])
             }
         }
