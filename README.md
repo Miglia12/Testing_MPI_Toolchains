@@ -23,6 +23,11 @@ Testing_MPI_Toolchains/
 
 ## Running instructions
 
+NOTE. Please, note that the performance reports can fail because of a high
+variance inherent to their execution time. Sanity tests should not fail under
+any circumstance. If you want an explanation to this high variance, please,
+consult the plots at the end of this document.
+
 These tests have been tailored for UniLu's Aion cluster. All necessary
 configuration has already been specified in the repository files. 
 To run the tests, execute the following commands from the repository's root directory:
