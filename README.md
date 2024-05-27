@@ -54,12 +54,12 @@ The second command loads the ReFrame module.
 
 * run the OSU Benchmark tests (only sanity checks):
 ```bash
-reframe -C configs/aion_config.py -c tests/osu_benchmarks --run --skip-performance-test
+reframe -C configs/aion_config.py -c tests/osu_benchmarks --run --skip-performance-check
 ```
 
 * run the OSU Benchmark tests (only performance checks):
 ```bash
-reframe -C configs/aion_config.py -c tests/osu_benchmarks --run --skip-sanity-test
+reframe -C configs/aion_config.py -c tests/osu_benchmarks --run --skip-sanity-check
 ```
 
 * run the Supermagic tests:
