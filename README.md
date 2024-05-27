@@ -86,15 +86,20 @@ For example:
 
 ## Results
 
-Put latency measures the time it takes to transfer a message from the origin process to the target process's memory. This operation is akin to a "write" operation:
+We now turn on to discuss the results we obtained for the performance tests. The data for all tables below has been obtained by performing ten independent runs of a subset of the performance tests.
 
+First, we will consider thae latency and bandwidth for transfering messages of a varying size from a single source to a single receiver. These results can be consulted in the first two tables below. In both cases, the X axis indicates the message size, and Y axeses represent latency and bandwidth. Each image shows one plot for each combination of compilation toolchain (2020 vs 2023) and number of nodes (1 vs 2).
+
+Both graphs reflect the same situation. The latency graph indicates that latency keeps constantly low up to message sizes around 10K characters. After that point, it increases exponentially. As for the bandwidth, it increases exponentially for message sizes between 0 and 10K characters, and stalls after that point. Thus, at 10K our network becomes saturated with information, and messages have to wait for being able to enter inter- or intra-node communication chanels, creating longer and longer stalls.
+
+We also note some differences between the 1 node and 2 node versions. The 2 node versions feature a constantly higher latency and constantly lower bandwidth. This is due to the fact that inter-node communication is more costly than the intra-node one. The 2020 toolchain seems to better employ the single-node environment, whereas the 2023 toolchain performs better in the multi-node one.
 <p float="left">
    <img src="https://github.com/Miglia12/Testing_MPI_Toolchains/blob/main/plots/put_latency.png?raw=true"   width=500>
    <img src="https://github.com/Miglia12/Testing_MPI_Toolchains/blob/main/plots/put_bandwidth.png?raw=true" width=500>
 </p>
 
-"All-to-All" benchmarks measure the performance of collective communication operations where every process sends data to and receives data from every other process:
-
+We now turn on to consider performance in all-to-all tests which involve sending messages to all other nodes in the network. The graph on the left displays blocking and non-blocking message passing for the 2020 toolchain, whereas the graph on the right does so across toolchains for blocking implementations. We may see that the situation is similar as before, all times remaining constant up to some point, and then increasing almost exponentially. However, the blocking implementations do seem to start to get worse earlier than the non-blocking ones, perhaps because of the added number of messages needed to perform the blocking operations.
 <p float="left">
    <img src="https://github.com/Miglia12/Testing_MPI_Toolchains/blob/main/plots/alltoall_blocking_non_blocking.png?raw=true" width=500>
    <img src="https://github.com/Miglia12/Testing_MPI_Toolchains/blob/main/plots/alltoall_toolchains.png?raw=true"            width=500>
+</p>
