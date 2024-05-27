@@ -88,8 +88,13 @@ For example:
 
 Put latency measures the time it takes to transfer a message from the origin process to the target process's memory. This operation is akin to a "write" operation:
 
-![pic](https://github.com/Miglia12/Testing_MPI_Toolchains/blob/main/plots/put_latency.png?raw=true) ![pic2](https://github.com/Miglia12/Testing_MPI_Toolchains/blob/main/plots/put_bandwidth.png?raw=true)
+<p float="left">
+   <img src="https://github.com/Miglia12/Testing_MPI_Toolchains/blob/main/plots/put_latency.png?raw=true"   width=500>
+   <img src="https://github.com/Miglia12/Testing_MPI_Toolchains/blob/main/plots/put_bandwidth.png?raw=true" width=500>
+</p>
 
 "All-to-All" benchmarks measure the performance of collective communication operations where every process sends data to and receives data from every other process:
 
-![pic](https://github.com/Miglia12/Testing_MPI_Toolchains/blob/main/plots/alltoall_blocking_non_blocking.png?raw=true) ![pic2](https://github.com/Miglia12/Testing_MPI_Toolchains/blob/main/plots/alltoall_toolchains.png?raw=true)
+<p float="left">
+   <img src="https://github.com/Miglia12/Testing_MPI_Toolchains/blob/main/plots/alltoall_blocking_non_blocking.png?raw=true" width=500>
+   <img src="https://github.com/Miglia12/Testing_MPI_Toolchains/blob/main/plots/alltoall_toolchains.png?raw=true"            width=500>
