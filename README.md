@@ -86,7 +86,7 @@ For example:
 
 ## Results
 
-We now turn on to discuss the results we obtained for the performance tests. The data for all tables below has been obtained by performing ten independent runs of a subset of the performance tests.
+We now turn on to discuss the results we obtained for the performance tests. The data for all tables below has been obtained by performing ten independent runs of a subset of the performance tests. In all of these graphs we can spot a growing trend of variance. In fact, we can see that variance escales exponentially. This is somewhat expected, as the scale of the plots also scale exponentially.
 
 First, we will consider thae latency and bandwidth for transfering messages of a varying size from a single source to a single receiver. These results can be consulted in the first two tables below. In both cases, the X axis indicates the message size, and Y axeses represent latency and bandwidth. Each image shows one plot for each combination of compilation toolchain (2020 vs 2023) and number of nodes (1 vs 2).
 
