@@ -56,6 +56,12 @@ reframe -C configs/aion_config.py -c tests/osu_benchmarks --run
 reframe -C configs/aion_config.py -c tests/supermagic --run
 ```
 
+4. Now, please generate a report summarising the performance of the OSU tests:
+
+```bash
+reframe -C configs/aion_config.py -c tests/osu_benchmarks --run --performance-report
+```
+
 ## Configuring tests
 
 By default, the OSU tests run with both an intra-node and inter-node configuration. However, the number of tasks can be configured from the configuration files under `configs/tests`. If you change the number of tasks, you should also add a corresponding performance reference value with the format `{i}_tasks`.
