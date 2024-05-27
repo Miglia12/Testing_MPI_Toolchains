@@ -100,6 +100,6 @@ We also note some differences between the 1 node and 2 node versions. The 2 node
 
 We now turn on to consider performance in all-to-all tests which involve sending messages to all other nodes in the network. The graph on the left displays blocking and non-blocking message passing for the 2020 toolchain, whereas the graph on the right does so across toolchains for blocking implementations. We may see that the situation is similar as before, all times remaining constant up to some point, and then increasing almost exponentially. However, the blocking implementations do seem to start to get worse earlier than the non-blocking ones, perhaps because of the added number of messages needed to perform the blocking operations.
 <p float="left">
-   <img src="https://github.com/Miglia12/Testing_MPI_Toolchains/blob/main/plots/alltoall_blocking_non_blocking.png?raw=true" width=300>
+   <img src="https://github.com/Miglia12/Testing_MPI_Toolchains/blob/main/plots/alltoall_blocking_non_blocking.jpg?raw=true" width=300>
    <img src="https://github.com/Miglia12/Testing_MPI_Toolchains/blob/main/plots/alltoall_toolchains.png?raw=true"            width=300>
 </p>
