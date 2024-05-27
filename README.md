@@ -90,17 +90,17 @@ reframe -C configs/aion_config.py -c tests/osu_benchmarks --run --performance-re
 
 ## Configuring tests
 
-By default, the OSU tests run with both an intra-node and inter-node configuration. However, the number of tasks can be configured from the configuration files under `configs/tests`. If you change the number of tasks, you should also add a corresponding performance reference value with the format `{i}_tasks`.
+By default, the OSU tests run with both an intra-node and inter-node configuration (using 1 and 2 nodes). However, the number of tasks can be configured from the configuration files under `configs/tests`. If you change the number of tasks, or in case a new toolchain is added, you should also add a corresponding performance reference value.
 
 For example:
 ```
 {
    ...
-   "num_tasks": 6,
+   "num_tasks": 4,
    "reference": {
       ...
-      "3_tasks": [23000, -0.05, None, 'MB/s'],
-      "6_tasks": [<ref_val>, <lower threshold>, <upper threshold>, <unit>]
+      "foss2023a": [23000, -0.05, None, 'MB/s'],
+      "new_toolchain": [<ref_val>, <lower threshold>, <upper threshold>, <unit>]
    }
 }
 ```
