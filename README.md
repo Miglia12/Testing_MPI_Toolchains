@@ -40,6 +40,7 @@ To run the tests, execute the following commands from the repository's root dire
 2. Set up the environment:
 
 ```bash
+module purge
 module use /work/projects/mhpc-softenv/easybuild/aion-epyc-prod-2023a/modules/all/
 module load devel/ReFrame
 ```
@@ -51,9 +52,14 @@ The second command loads the ReFrame module.
 
 3. Run the specific benchmark tests using ReFrame with the `aion_config.py` configuration file:
 
-* run the OSU Benchmark tests:
+* run the OSU Benchmark tests (only sanity checks):
 ```bash
-reframe -C configs/aion_config.py -c tests/osu_benchmarks --run
+reframe -C configs/aion_config.py -c tests/osu_benchmarks --run --skip-performance-test
+```
+
+* run the OSU Benchmark tests (only performance checks):
+```bash
+reframe -C configs/aion_config.py -c tests/osu_benchmarks --run --skip-sanity-test
 ```
 
 * run the Supermagic tests:
